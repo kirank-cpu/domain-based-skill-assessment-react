@@ -1,0 +1,23 @@
+# Render Blueprint. Deploy via "New + → Blueprint" and point it at this repo,
+# or set the same Build/Start commands manually in the dashboard.
+services:
+  - type: web
+    name: q-provio-assessment
+    runtime: node
+    plan: free
+    # Build the static app (needs devDependencies like vite/tailwind).
+    buildCommand: npm install && npm run build
+    # Serve the built app + the Claude API middleware, bound to 0.0.0.0:$PORT.
+    startCommand: npm run start
+    envVars:
+      # Ensure devDependencies (vite) are installed even if the platform sets
+      # NODE_ENV=production — `vite preview` needs vite at runtime.
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"
+      # Set your key in the Render dashboard (do NOT commit it). sync:false keeps
+      # it out of the blueprint.
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      # Optional: faster/cheaper generation (recommended for hosted latency).
+      - key: ASSESSMENT_MODEL
+        value: claude-sonnet-5

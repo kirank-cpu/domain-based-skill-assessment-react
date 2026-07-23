@@ -111,5 +111,21 @@ export async function generateQuestions({ domainLabel, levelLabel, count = 20 })
     throw new Error('Model returned no valid questions.')
   }
 
-  return valid
+  // Models tend to place the correct answer first. Shuffle each question's
+  // options so the correct answer is evenly distributed across A/B/C/D, and
+  // recompute the answer index by tracking positions (robust to duplicates).
+  return valid.map(shuffleOptions)
+}
+
+function shuffleOptions(q) {
+  const order = q.options.map((_, i) => i)
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[order[i], order[j]] = [order[j], order[i]]
+  }
+  return {
+    ...q,
+    options: order.map((i) => q.options[i]),
+    answer: order.indexOf(q.answer),
+  }
 }
