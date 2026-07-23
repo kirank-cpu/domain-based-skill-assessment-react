@@ -1,6 +1,7 @@
 .claude/
 node_modules/
 dist/
+coverage/
 
 # Environment / secrets — never commit your API key
 .env
