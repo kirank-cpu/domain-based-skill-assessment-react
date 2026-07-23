@@ -29,6 +29,15 @@ function claudeApiPlugin() {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss(), claudeApiPlugin()],
+  test: {
+    environment: 'node',
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'lcov'],
+      include: ['src/**/*.{js,jsx}'],
+      exclude: ['src/main.jsx'],
+    },
+  },
   // Production preview server (used by `npm run start` on hosts like Render).
   // Binds all interfaces on the platform-provided $PORT and allows the host's
   // dynamic domain. The Claude API middleware runs here too (configurePreviewServer),
