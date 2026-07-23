@@ -58,10 +58,11 @@ export default function GeneratingScreen() {
               </div>
 
               <h1 className="text-2xl font-bold">
-                Generating unique assessment via Claude AI…
+                AI is generating your custom {DYNAMIC_QUESTION_COUNT}-question
+                assessment…
               </h1>
               <p className="mt-2 text-sm text-slate-400">
-                Creating {DYNAMIC_QUESTION_COUNT} fresh {domain?.name} questions at{' '}
+                Creating fresh {domain?.name} questions at{' '}
                 <span className="font-medium text-slate-200">{level?.name}</span> level
                 {userName ? ` for ${userName}` : ''}.
               </p>

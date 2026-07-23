@@ -17,7 +17,7 @@ import {
   getLevel,
 } from '../data/domains.js'
 import { generateQuestions } from '../services/questionService.js'
-import { getFallbackQuestions } from '../data/githubFallback.js'
+import { getFallbackQuestions } from '../data/fallback/index.js'
 
 const AssessmentContext = createContext(null)
 
@@ -44,10 +44,9 @@ const initialState = {
   loadError: null, // message shown when AI generation fell back
 }
 
-// Local fallback source per domain (only the dynamic domain has one today).
+// Per-domain local fallback source (every dynamic domain has a 20/level bank).
 function fallbackFor(domainId, levelId, count) {
-  if (domainId === 'github-cicd') return getFallbackQuestions(levelId, count)
-  return []
+  return getFallbackQuestions(domainId, levelId, count)
 }
 
 // Guarantees exactly `count` distinct questions with stable, unique ids.

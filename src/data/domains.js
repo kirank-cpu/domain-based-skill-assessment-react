@@ -11,6 +11,7 @@ export const DOMAINS = [
     accent: 'from-sky-500 to-cyan-500',
     accentText: 'text-sky-600',
     accentBg: 'bg-sky-50',
+    dynamic: true,
   },
   {
     id: 'azure-data',
@@ -21,6 +22,7 @@ export const DOMAINS = [
     accent: 'from-blue-600 to-indigo-600',
     accentText: 'text-blue-600',
     accentBg: 'bg-blue-50',
+    dynamic: true,
   },
   {
     id: 'automation-qa',
@@ -31,6 +33,7 @@ export const DOMAINS = [
     accent: 'from-violet-500 to-fuchsia-500',
     accentText: 'text-violet-600',
     accentBg: 'bg-violet-50',
+    dynamic: true,
   },
   {
     id: 'general-swe',
@@ -41,6 +44,7 @@ export const DOMAINS = [
     accent: 'from-emerald-500 to-teal-500',
     accentText: 'text-emerald-600',
     accentBg: 'bg-emerald-50',
+    dynamic: true,
   },
   {
     id: 'github-cicd',

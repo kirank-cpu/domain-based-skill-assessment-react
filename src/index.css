@@ -109,6 +109,103 @@ body {
   }
 }
 
+/* ---- Motion-graphics background (neon streams, nodes, motifs) ---- */
+/* Flowing data-stream packets travel along the SVG paths. */
+@keyframes stream-flow {
+  to {
+    stroke-dashoffset: -2400;
+  }
+}
+
+/* Interconnected network nodes pulse with light. */
+@keyframes node-pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.5);
+  }
+}
+
+/* Slow, cinematic rotation for gears / testing loops. */
+@keyframes spin-cw {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin-ccw {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Gentle floating drift for translucent motifs (depth of field). */
+@keyframes drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -22px, 0);
+  }
+}
+@keyframes drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(16px, 14px, 0);
+  }
+}
+
+/* Cascading data-pipeline packets falling through the depth. */
+@keyframes pipeline-fall {
+  0% {
+    transform: translateY(-10%);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(360%);
+    opacity: 0;
+  }
+}
+
+.animate-spin-cw {
+  animation: spin-cw 70s linear infinite;
+}
+.animate-spin-ccw {
+  animation: spin-ccw 55s linear infinite;
+}
+.animate-drift-a {
+  animation: drift-a 15s ease-in-out infinite;
+}
+.animate-drift-b {
+  animation: drift-b 19s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-cw,
+  .animate-spin-ccw,
+  .animate-drift-a,
+  .animate-drift-b {
+    animation: none;
+  }
+  /* Streams/nodes animate via inline styles; freeze them too. */
+  [data-mg-anim] {
+    animation: none !important;
+  }
+}
+
 .animate-float-a {
   animation: float-orb 20s ease-in-out infinite;
 }

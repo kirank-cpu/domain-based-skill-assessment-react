@@ -29,4 +29,13 @@ function claudeApiPlugin() {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss(), claudeApiPlugin()],
+  // Production preview server (used by `npm run start` on hosts like Render).
+  // Binds all interfaces on the platform-provided $PORT and allows the host's
+  // dynamic domain. The Claude API middleware runs here too (configurePreviewServer),
+  // so the API key stays server-side.
+  preview: {
+    host: true, // 0.0.0.0 — required for Render/Railway/Fly to detect the port
+    port: Number(process.env.PORT) || 4173,
+    allowedHosts: true, // accept the platform's *.onrender.com (etc.) hostname
+  },
 })
