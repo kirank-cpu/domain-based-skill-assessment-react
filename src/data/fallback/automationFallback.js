@@ -1,4 +1,4 @@
-// Offline fallback bank for the "Automation QA" domain (20/level).
+// Offline fallback bank for the "QA - Selenium automation" domain (20/level).
 
 export const AUTOMATION_FALLBACK = {
   beginner: [

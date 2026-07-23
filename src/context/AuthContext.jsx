@@ -85,15 +85,11 @@ export function AuthProvider({ children }) {
 
   // ---- Sign up: creates a user, returns the one-time 4-digit code ----
   const signup = useCallback(
-    async ({ username, email, password }) => {
+    async ({ username, password }) => {
       const uname = username.trim()
-      const mail = email.trim()
 
       if (users.some((u) => norm(u.username) === norm(uname))) {
         throw new Error('That username is already taken.')
-      }
-      if (users.some((u) => norm(u.email) === norm(mail))) {
-        throw new Error('An account with that email already exists.')
       }
 
       const salt = randomSalt()
@@ -109,7 +105,7 @@ export function AuthProvider({ children }) {
           Date.now().toString(36) +
           Math.random().toString(36).slice(2, 8),
         username: uname,
-        email: mail,
+        email: '',
         salt,
         passwordHash,
         codeHash,

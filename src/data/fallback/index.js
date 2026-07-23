@@ -6,6 +6,7 @@ import { GITHUB_FALLBACK } from '../githubFallback.js'
 import { QA_FALLBACK } from './qaFallback.js'
 import { AZURE_FALLBACK } from './azureFallback.js'
 import { AUTOMATION_FALLBACK } from './automationFallback.js'
+import { PLAYWRIGHT_FALLBACK } from './playwrightFallback.js'
 import { SWE_FALLBACK } from './sweFallback.js'
 
 // Keyed by domain id (see src/data/domains.js).
@@ -13,6 +14,7 @@ export const FALLBACK_BANKS = {
   qa: QA_FALLBACK,
   'azure-data': AZURE_FALLBACK,
   'automation-qa': AUTOMATION_FALLBACK,
+  'playwright-automation': PLAYWRIGHT_FALLBACK,
   'general-swe': SWE_FALLBACK,
   'github-cicd': GITHUB_FALLBACK,
 }
