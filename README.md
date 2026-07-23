@@ -5,7 +5,7 @@ A responsive, modern web app for skill assessments across multiple domains, buil
 ## Features
 
 - **Authentication** — Login / Signup / Forgot-Password flows in a centered glass card. Signup issues a one-time **4-digit security code** (required for password recovery); credentials are **salted + SHA-256 hashed** before being stored in `localStorage` — plaintext passwords and codes are never persisted. The app is gated behind auth.
-- **Landing / Domain selection** — pick a domain (QA, Azure Data Engineer, Automation QA, General Software Engineering, **GitHub & CI/CD**) and difficulty (Beginner, Intermediate, Complex/Expert), plus your name.
+- **Landing / Domain selection** — pick a domain (QA, Azure Data Engineer, QA - Selenium automation, General Software Engineering, **GitHub & CI/CD**) and difficulty (Beginner, Intermediate, Complex/Expert), plus your name.
 - **AI-generated assessments (GitHub & CI/CD)** — this domain generates a fresh set of **exactly 20 unique questions** per session via the **Anthropic Claude API** (structured outputs + adaptive thinking). Strict per-level timers (Beginner 20 min · Intermediate 40 min · Complex 60 min) auto-submit at zero. A loading screen ("Generating unique assessment via Claude AI…") covers the request, and if the API is unavailable it **falls back to a local 20-question bank** so the assessment always runs. The API key stays server-side (see below).
 - **Assessment interface** — dynamic MCQ + scenario-based questions, an overall countdown timer with a live progress bar, a question navigator, and real-time answer tracking.
 - **Instant evaluation** — automated grading with a score breakdown (correct/incorrect, percentage, time taken) and a collapsible per-question review with explanations.

@@ -14,6 +14,7 @@ import {
   AlertTriangle,
   Wand2,
   Info,
+  X,
 } from 'lucide-react'
 
 export default function QuizScreen() {
@@ -30,6 +31,7 @@ export default function QuizScreen() {
     prevQuestion,
     goToQuestion,
     submitAssessment,
+    restart,
     questionSource,
     loadError,
   } = useAssessment()
@@ -38,6 +40,7 @@ export default function QuizScreen() {
   const level = getLevel(levelId)
   const [secondsLeft, setSecondsLeft] = useState(totalSeconds)
   const [showConfirm, setShowConfirm] = useState(false)
+  const [showCancelConfirm, setShowCancelConfirm] = useState(false)
   const submittedRef = useRef(false)
 
   const q = questions[currentIndex]
@@ -68,6 +71,11 @@ export default function QuizScreen() {
     submitAssessment()
   }
 
+  const handleCancel = () => {
+    submittedRef.current = true
+    restart()
+  }
+
   const timeProgress = totalSeconds > 0 ? (secondsLeft / totalSeconds) * 100 : 0
   const questionProgress =
     questions.length > 0 ? ((currentIndex + 1) / questions.length) * 100 : 0
@@ -82,9 +90,19 @@ export default function QuizScreen() {
         <div className="mx-auto max-w-4xl px-5 py-3">
           <div className="mb-3 flex items-center justify-between border-b border-slate-100 pb-2.5">
             <Brand size="sm" tone="onLight" />
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500">
-              Assessment in progress
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="hidden rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500 sm:inline-flex">
+                Assessment in progress
+              </span>
+              <button
+                type="button"
+                onClick={() => setShowCancelConfirm(true)}
+                className="inline-flex items-center gap-1.5 rounded-full border border-rose-200 bg-rose-50 px-3 py-1.5 text-xs font-semibold text-rose-600 transition hover:border-rose-300 hover:bg-rose-100"
+              >
+                <X className="h-3.5 w-3.5" />
+                Cancel
+              </button>
+            </div>
           </div>
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 min-w-0">
@@ -331,6 +349,40 @@ export default function QuizScreen() {
                 className="flex-1 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
               >
                 Submit Now
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Cancel confirmation modal */}
+      {showCancelConfirm && (
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-slate-900/50 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-md animate-pop-in rounded-2xl bg-white p-6 shadow-2xl">
+            <div className="mb-4 flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-rose-100 text-rose-600">
+                <AlertTriangle className="h-6 w-6" />
+              </span>
+              <h3 className="text-lg font-bold text-slate-900">
+                Cancel this assessment?
+              </h3>
+            </div>
+            <p className="text-sm text-slate-600">
+              Your current answers and timer progress will be discarded, and you will
+              return to the home page.
+            </p>
+            <div className="mt-6 flex gap-3">
+              <button
+                onClick={() => setShowCancelConfirm(false)}
+                className="flex-1 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+              >
+                Continue Assessment
+              </button>
+              <button
+                onClick={handleCancel}
+                className="flex-1 rounded-xl bg-rose-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-rose-700"
+              >
+                Cancel Assessment
               </button>
             </div>
           </div>

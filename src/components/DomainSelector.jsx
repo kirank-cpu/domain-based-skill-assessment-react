@@ -126,8 +126,8 @@ export default function DomainSelector() {
           </h1>
 
           <p className="animate-fade-up mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
-            Assess your expertise across QA, Azure Data Engineering, Automation, and
-            Software Engineering. Score{' '}
+            Assess your expertise across QA, Azure Data Engineering, Selenium,
+            Playwright, and Software Engineering. Score{' '}
             <span className="font-semibold text-white">{PASS_THRESHOLD}% or higher</span>{' '}
             to unlock a professional, downloadable certificate.
           </p>
